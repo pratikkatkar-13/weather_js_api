@@ -7,7 +7,7 @@ const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
 
-//initially vairables need????
+//variables
 
 let oldTab = userTab;
 const API_KEY = "71d34af59088915e9caa0cabb51d364f";
@@ -165,6 +165,6 @@ async function fetchSearchWeatherInfo(city) {
         renderWeatherInfo(data);
     }
     catch(err) {
-        //hW
+        loadingScreen.classList.remove("active")
     }
 }
