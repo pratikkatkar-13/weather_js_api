@@ -10,7 +10,7 @@ const userInfoContainer = document.querySelector(".user-info-container");
 //initially vairables need????
 
 let oldTab = userTab;
-const API_KEY = "d1845658f92b31c64bd94f06f7188c9c";
+const API_KEY = "71d34af59088915e9caa0cabb51d364f";
 oldTab.classList.add("current-tab");
 getfromSessionStorage();
 
@@ -21,13 +21,13 @@ function switchTab(newTab) {
         oldTab.classList.add("current-tab");
 
         if(!searchForm.classList.contains("active")) {
-            //kya search form wala container is invisible, if yes then make it visible
+            //if search tab invisible make it visible when newtb is searchtab
             userInfoContainer.classList.remove("active");
             grantAccessContainer.classList.remove("active");
             searchForm.classList.add("active");
         }
         else {
-            //main pehle search wale tab pr tha, ab your weather tab visible karna h 
+            //if newtab is usertab
             searchForm.classList.remove("active");
             userInfoContainer.classList.remove("active");
             //ab main your weather tab me aagya hu, toh weather bhi display karna poadega, so let's check local storage first
@@ -50,8 +50,9 @@ searchTab.addEventListener("click", () => {
 //check if cordinates are already present in session storage
 function getfromSessionStorage() {
     const localCoordinates = sessionStorage.getItem("user-coordinates");
-    if(!localCoordinates) {
-        //agar local coordinates nahi mile
+    if(!localCoordinates) 
+    {
+        //if not in session storage
         grantAccessContainer.classList.add("active");
     }
     else {
@@ -65,7 +66,7 @@ async function fetchUserWeatherInfo(coordinates) {
     const {lat, lon} = coordinates;
     // make grantcontainer invisible
     grantAccessContainer.classList.remove("active");
-    //make loader visible
+    // make loader visible
     loadingScreen.classList.add("active");
 
     //API CALL
@@ -73,6 +74,7 @@ async function fetchUserWeatherInfo(coordinates) {
         const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
           );
+
         const  data = await response.json();
 
         loadingScreen.classList.remove("active");
@@ -81,8 +83,6 @@ async function fetchUserWeatherInfo(coordinates) {
     }
     catch(err) {
         loadingScreen.classList.remove("active");
-        //HW
-
     }
 
 }
@@ -119,7 +119,7 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(showPosition);
     }
     else {
-        //HW - show an alert for no gelolocation support available
+        alert("no gelocation support")
     }
 }
 
