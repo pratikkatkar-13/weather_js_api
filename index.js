@@ -10,7 +10,7 @@ const userInfoContainer = document.querySelector(".user-info-container");
 //variables
 
 let oldTab = userTab;
-const API_KEY = "71d34af59088915e9caa0cabb51d364f";
+const API_KEY = ""; //give ypur api key here
 oldTab.classList.add("current-tab");
 getfromSessionStorage();
 
